@@ -1,0 +1,2 @@
+class Indication
+end

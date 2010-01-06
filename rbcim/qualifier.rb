@@ -1,10 +1,29 @@
+module CIM
 class Qualifier
-  @@modes = [ :key, :in, :out, :write, :propagated ]
+  MODES = [ :key, :in, :out, :write, :propagated ]
   
-  def initialize mode = 0
-    @mode = 0;
+  # store mode as bitmask in single integer value
+  def initialize *mode
+    @mode = 0
+    case mode
+    when Array: mode.each { |m| self << m }
+    when Symbol: self << mode
+    end
   end
   
+  def to_s
+    i = 1
+    s = ""
+    MODES.each do |m|
+      if (@mode & i) != 0
+	s << "," unless s.empty?
+	s << m.to_s
+      end
+      i <<= 1
+    end
+    s
+  end
+
   def << mode
     case mode
     when :key
@@ -23,23 +42,24 @@ class Qualifier
   end
   
   def key?
-    @mode & 1
+    @mode & 1 != 0
   end
   
   def in?
-    @mode & 2
+    @mode & 2 != 0
   end
   
   def out?
-    @mode & 4
+    @mode & 4 != 0
   end
   
   def write?
-    @mode & 8
+    @mode & 8 != 0
   end
   
   def propagated?
-    @mode & 16
+    @mode & 16 != 0
   end
 
+end
 end
