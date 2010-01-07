@@ -4,12 +4,13 @@
 # Written by Klaus Kaempf
 #
 
-require 'rbcim/type'
-require 'rbcim/qualifier'
-require 'rbcim/feature'
-require 'rbcim/property'
-require 'rbcim/reference'
-require 'rbcim/method'
-require 'rbcim/association'
-require 'rbcim/instance'
-require 'rbcim/indication'
+rbcim_dir = File.dirname(__FILE__)
+require rbcim_dir + '/rbcim/type'
+require rbcim_dir + '/rbcim/qualifier'
+require rbcim_dir + '/rbcim/feature'
+require rbcim_dir + '/rbcim/property'
+require rbcim_dir + '/rbcim/reference'
+require rbcim_dir + '/rbcim/method'
+require rbcim_dir + '/rbcim/association'
+require rbcim_dir + '/rbcim/instance'
+require rbcim_dir + '/rbcim/indication'
