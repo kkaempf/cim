@@ -1,4 +1,6 @@
 module CIM
-class Reference < Property
-end
+  module Meta
+    class Reference < Property
+    end
+  end
 end
