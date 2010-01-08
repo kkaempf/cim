@@ -1,0 +1,8 @@
+About RbCim
+
+RbCim is a pure-Ruby implementation of the CIM meta model.
+
+Instances of RbCim classes are used to define a CIM schema, often
+represented as a .mof file.
+
+Hence the primary consumer of RbCim is RbMof, a Ruby based MOF compiler.

@@ -3,7 +3,7 @@ module CIM
     class NamedElement
       attr_reader :name, :characteristics
       def initialize name
-	@name = name
+	@name = name.to_s
 	@characteristics = []
       end
       def << qualifier
