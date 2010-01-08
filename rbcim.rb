@@ -6,6 +6,7 @@
 
 rbcim_dir = File.dirname(__FILE__)
 require rbcim_dir + '/rbcim/type'
+require rbcim_dir + '/rbcim/variant'
 require rbcim_dir + '/rbcim/flavor'
 require rbcim_dir + '/rbcim/scope'
 require rbcim_dir + '/rbcim/named_element'
