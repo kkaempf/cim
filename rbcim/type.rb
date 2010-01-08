@@ -1,7 +1,7 @@
 module CIM
   module Meta
     class Type
-      TYPES = [:nil,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
+      TYPES = [:null,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
       attr_reader :type
       def initialize type
 	type.downcase! if type.is_a? String
