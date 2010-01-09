@@ -17,7 +17,7 @@ module CIM
 	s << "[#{@qualifiers.join(', ')}]\n" if @qualifiers
 	s << "class #{@name}"
 	s << " AS #{@alias_name}" if @alias_name
-	s << " : #{@superclass.name}" if @superclass
+	s << " : #{@superclass}" if @superclass
 	s << " {"
 	if @features
 	  f = @features.join(";\n  ")
