@@ -9,17 +9,16 @@ module CIM
       end
     end
     class Flavors
-      FLAVORS = [:enableoverride, :disableoverride, :restricted, :tosubclass, :translatable]
+      FLAVORS = [:enableoverride, :disableoverride, :restricted, :toinstance, :tosubclass, :translatable]
       attr_reader :flavors
       def initialize flavor
 	@flavors = []
-	puts "Flavors.new(#{flavor})"
 	self << flavor
       end
       def << flavor
 	flavor.downcase! if flavor.kind_of? String
 	f = flavor.to_sym
-	raise FlavorError, "#{flavor}" unless FLAVORS.include? f
+	raise FlavorError.new("#{flavor}") unless FLAVORS.include? f
 	@flavors << f
 	self
       end
