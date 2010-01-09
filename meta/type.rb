@@ -42,41 +42,56 @@ module CIM
 	  false
 	end
       end
-      def matches? x
-#	puts ">#{self}<.matches?>#{x.inspect}<"
-	case x
-	when CIM::Meta::Type, CIM::Meta::Variant
-	  return true if x.type == @type
-	  return true if MATCHES[@type].include? x.type
-	  false
+      private
+      def matches_value type,value
+#	puts ">#{type}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
+	case value
 	when NilClass
 	  true
 	when FalseClass, TrueClass
-	  @type == :bool
+	  type == :bool
 	when Integer
-	  case @type
-	  when :uint8: x === (0..256)
-	  when :sint8: x === (-128..127)
-	  when :uint16: x === (0..65535)
-	  when :sint16: x === (-32768..32767)
-	  when :uint32: x === (0..4294967295)
-	  when :sint32: x === (-2147483648..2147483647)
-	  when :uint64: x === (0..18446744073709551615)
-	  when :sint64: x === (-9223372036854775808..9223372036854775807)
+	  case type
+	  when :uint8: (0..255) === value
+	  when :sint8: (-128..127) === value
+	  when :uint16: (0..65535) === value
+	  when :sint16: (-32768..32767) === value
+	  when :uint32: (0..4294967295) === value
+	  when :sint32: (-2147483648..2147483647) === value
+	  when :uint64: (0..18446744073709551615) === value
+	  when :sint64: (-9223372036854775808..9223372036854775807) === value
 	  else
 	    false
 	  end
 	when Float
-	  case @type
-	  when :real32: x.to_i.size == 4
+	  case type
+	  when :real32: value.to_i.size == 4
 	  when :real64: true
 	  else
 	    false
 	  end
 	when String
-	  @type == :string
+	  type == :string
 	else
 	  false
+	end
+      end
+      public
+      def matches? x
+#	puts ">#{self}<{#{self.class}}.matches?>#{x.inspect}<{#{x.class}}"
+	case x
+	when CIM::Meta::Type, CIM::Meta::Variant
+	  return true if x.type == @type
+	  return true if MATCHES[@type].include? x.type
+	  false
+	when ::Array
+	  return false unless self.is_a? CIM::Meta::Array
+	  x.each do |v|
+	    return false unless matches_value @type,v
+	  end
+	  true
+	else
+	  matches_value @type, x
 	end
       end
     end
