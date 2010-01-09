@@ -94,5 +94,15 @@ module CIM
 	end
       end
     end
+    class Reference < Type
+      attr_reader :name
+      def initialize name
+	@name = name
+	super :class
+      end
+      def to_s
+	"#{@name} ref"
+      end
+    end
   end
 end

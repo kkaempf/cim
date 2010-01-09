@@ -1,5 +1,5 @@
 module CIM
-  module Meta
+  module Schema
     class Reference < Property
     end
   end

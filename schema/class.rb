@@ -1,14 +1,15 @@
 module CIM
-  module Meta
+  module Schema
     require File.dirname(__FILE__) + "/../schema/qualifier"
-    class Class < NamedElement
+    class Class < CIM::Meta::NamedElement
       attr_reader :qualifiers, :alias_name, :superclass, :features
       def initialize name, qualifiers, alias_name, superclass, features
 	@qualifiers = qualifiers
 	@alias_name = alias_name
 	@superclass = superclass
+	features = nil if features.is_a?(Array) && features.empty?
 	@features = features
-#	puts "CIM::Meta::Class.new(#{@features})"
+#	puts "CIM::Schema::Class.new(#{@features})"
 	super name
       end
       def to_s
@@ -19,8 +20,8 @@ module CIM
 	s << " : #{@superclass.name}" if @superclass
 	s << " {"
 	if @features
-	  f = @features.join("\n")
-	  s << "\n#{f}\n" 
+	  f = @features.join(";\n  ")
+	  s << "\n  #{f};\n" 
 	end
 	s << "}"
       end
