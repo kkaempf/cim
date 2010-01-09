@@ -26,7 +26,7 @@ module CIM
       def initialize type
 	type.downcase! if type.is_a? String
 	@type = type.to_sym
-	raise TypeError, "#{type}" unless TYPES.include? @type
+	raise TypeError.new("#{type}") unless TYPES.include? @type
       end
       def to_s
 	@type.to_s

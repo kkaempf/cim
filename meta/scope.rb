@@ -21,7 +21,7 @@ module CIM
       def << element
 	element.downcase! if element.is_a?(String)
 	e = element.to_sym
-	raise MetaElementError(element) unless META_ELEMENTS.include?(e)
+	raise MetaElementError.new(element) unless META_ELEMENTS.include?(e)
 	@elements << e
 	self
       end
