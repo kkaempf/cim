@@ -17,11 +17,9 @@ module CIM
 	end
       end
       def to_s
-	unless self.empty?
-	  q = self.join(", ")
-	  return "[#{q}]"
-	end
-	""
+	return "" if self.empty?
+	q = self.join(", ")
+	return "[#{q}]"
       end
     end
   end
