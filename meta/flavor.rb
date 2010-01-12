@@ -9,7 +9,7 @@ module CIM
       end
     end
     class Flavors
-      FLAVORS = [:enableoverride, :disableoverride, :restricted, :toinstance, :tosubclass, :translatable]
+      FLAVORS = [:amended, :enableoverride, :disableoverride, :restricted, :toinstance, :tosubclass, :translatable]
       attr_reader :flavors
       def initialize flavor
 	@flavors = []
