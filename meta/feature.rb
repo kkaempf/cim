@@ -11,7 +11,7 @@ module CIM
       end
       def to_s
 	s = ""
-	s << "\n  #{@qualifiers}\n  " if @qualifiers
+	s << "#{@qualifiers}\n  " if @qualifiers
 	case @type
 	when CIM::Meta::Array
 	  s << "#{@type.type} #{@name}[]"
