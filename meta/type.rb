@@ -1,9 +1,10 @@
 module CIM
   module Meta
     class Type
-      TYPES = [:null,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
+      TYPES = [:null,:void,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
       MATCHES = {
 	:null => [],
+	:void => [], # WMI
 	:bool => [],
 	:char16 => [ :null, :string ],
 	:string => [ :null ],
