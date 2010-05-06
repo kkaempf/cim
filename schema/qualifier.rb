@@ -18,7 +18,7 @@ module CIM
         when CIM::Meta::Qualifier
 	  @definition == q  
 	when Symbol
-	  q.to_s == @definition.name && @value.nil? && @flavor.nil?
+	  q.to_s.downcase == @definition.name.downcase && @value.nil? && @flavor.nil?
 	else
 	  false
         end
