@@ -13,11 +13,13 @@ module CIM
       end
 
       def == q
-	(@name == q.name) && (@type == q.type)
+#	puts "#{@name}:#{@type} == #{q.name}:#{q.type}"
+	(@name.downcase == q.name.downcase) &&
+	  (@type.nil? || q.type.nil? || (@type == q.type))
       end
 
       def to_sym
-	@name.to_sym
+	@name.downcase.to_sym
       end
 
       def to_s

@@ -24,11 +24,17 @@ module CIM
         end
       end
       def to_sym
-	@definition.to_sym
+	@definition.downcase.to_sym
       end
       def to_s
 	s = "#{@definition.name.capitalize}"
-	s << "(#{@value.inspect})" if @value
+	case @value
+	when nil:
+	when Array:
+	  s << " {#{@value.join(', ')}}"
+	else
+	  s << "(#{@value.inspect})"
+	end
 	s << " #{@flavor}" if @flavor
         s
       end
