@@ -12,6 +12,30 @@ module CIM
 #	puts "CIM::Schema::Class.new(#{@features})"
 	super name
       end
+      def add_type t
+	@ptype << t
+      end
+      # true if class has instances (instance provider)
+      def instance?
+	@features.size > 0
+      end
+      # true if class has methods (method provider)
+      def method?
+	@features.each do |f|
+	  case f
+	  when CIM::Schema::Method: return true
+	  end
+	end
+	false
+      end
+      # true if class has associations (association provider)
+      def association?
+	false
+      end
+      # true if class has indications (indication provider)
+      def indication?
+	false
+      end
       def to_s
 	s = ""
 	s << "[#{@qualifiers.join(', ')}]\n" if @qualifiers
