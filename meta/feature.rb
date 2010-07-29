@@ -9,6 +9,18 @@ module CIM
 	@qualifiers = qualifiers
 	super name
       end
+      # if static (class-level) feature
+      def static?
+	false
+      end
+      # if method
+      def method?
+	false
+      end
+      # if reference
+      def reference?
+	false
+      end
       def to_s
 	s = ""
 	s << "#{@qualifiers}\n  " if @qualifiers

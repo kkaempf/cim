@@ -7,6 +7,9 @@ module CIM
 	@parameters = parameters
 	super type,name,qualifiers
       end
+      def method?
+	true
+      end
       def to_s
 	p = @parameters.join(", ") if @parameters
 	"#{super}(#{p})"
