@@ -3,6 +3,7 @@ module CIM
     require File.dirname(__FILE__) + "/../schema/qualifier"
     class Class < CIM::Meta::NamedElement
       attr_reader :qualifiers, :alias_name, :superclass, :features
+      attr_accessor :parent
       def initialize name, qualifiers, alias_name, superclass, features
 	@qualifiers = qualifiers
 	@alias_name = alias_name
