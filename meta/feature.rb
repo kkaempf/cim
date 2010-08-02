@@ -9,6 +9,10 @@ module CIM
 	@qualifiers = qualifiers
 	super name
       end
+      # if has key qualifier
+      def key?
+	@qualifiers && @qualifiers.include?(:key,:bool)
+      end
       # if static (class-level) feature
       def static?
 	false
