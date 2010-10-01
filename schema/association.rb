@@ -2,7 +2,7 @@ module CIM
   module Schema
     class Association < Class
       def initialize name, qualifiers, alias_name, superclass, features
-	raise "Association needs 'association' qualifier" unless qualifiers.include?(:association)
+	raise "Association needs 'association' qualifier" unless qualifiers.include?(:association, :bool)
 	super name, qualifiers, alias_name, superclass, features
       end
       # true if class has associations (association provider)
