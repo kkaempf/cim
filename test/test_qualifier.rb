@@ -5,7 +5,7 @@ require "cim"
 
 class QualifierTest < Test::Unit::TestCase
   def test_key
-    q = CIM::Meta::Qualifier.new :key, :bool
+    q = CIM::QualifierDeclaration.new :key, :bool
     assert q
   end
   def test_raise

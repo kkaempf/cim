@@ -1,7 +1,7 @@
 module CIM
   require File.join(File.dirname(__FILE__),"qualifier")
-  class Class < CIM::Meta::NamedElement
-    attr_reader :qualifiers, :alias_name, :superclass, :features
+  class Class < CIM::NamedElement
+    attr_reader :alias_name, :qualifiers, :superclass, :features
     attr_accessor :parent
     def initialize name, qualifiers, alias_name, superclass, features
       @qualifiers = qualifiers
@@ -9,7 +9,7 @@ module CIM
       @superclass = superclass
       features = nil if features.is_a?(Array) && features.empty?
       @features = features
-      #	puts "CIM::Schema::Class.new(#{@features})"
+      #	puts "CIM::Class.new(#{@features})"
       super name
     end
     def add_type t
@@ -23,7 +23,7 @@ module CIM
     def method?
       @features.each do |f|
 	case f
-	when CIM::Schema::Method: return true
+	when CIM::Method: return true
 	end
       end
       false

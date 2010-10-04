@@ -5,7 +5,7 @@ require "cim"
 
 class MethodTest < Test::Unit::TestCase
   def test_init
-    m = CIM::Method.new :real32, "Foo", CIM::Meta::Qualifier.new(:description, :string, "This is a foo method", :class)
+    m = CIM::Method.new :real32, "Foo", CIM::QualifierDeclaration.new(:description, :string, "This is a foo method", :class)
     assert m
     assert_equal "Foo", m.name
     assert m.qualifiers.size > 0

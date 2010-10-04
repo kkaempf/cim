@@ -8,17 +8,17 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 module Cim
-  VERSION = '0.2.7'
+  VERSION = '0.3.0'
   cim_dir = File.join(File.dirname(__FILE__),"cim")
-  require cim_dir + '/meta/type'
-  require cim_dir + '/meta/variant'
-  require cim_dir + '/meta/flavor'
-  require cim_dir + '/meta/scope'
-  require cim_dir + '/meta/named_element'
-  require cim_dir + '/meta/qualifier'
+  require cim_dir + '/type'
+  require cim_dir + '/variant'
+  require cim_dir + '/qualifier_flavors'
+  require cim_dir + '/qualifier_scope'
+  require cim_dir + '/named_element'
+  require cim_dir + '/qualifier_declaration'
   require cim_dir + '/qualifier'
   require cim_dir + '/qualifiers'
-  require cim_dir + '/meta/feature'
+  require cim_dir + '/class_feature'
   require cim_dir + '/property'
   require cim_dir + '/reference'
   require cim_dir + '/method'

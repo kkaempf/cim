@@ -1,6 +1,6 @@
 module CIM
-  # Array of CIM::Schema::Qualifier
-  class Qualifiers < Array
+  # Array of CIM::Qualifier
+  class Qualifiers < ::Array
     #
     # check if qualifier exists
     #
@@ -8,14 +8,14 @@ module CIM
     def include? q,type=:null
       #	puts "#{self}.include? #{q}:#{type}"
       case q
-      when CIM::Schema::Qualifier
+      when CIM::Qualifier
 	q = q.definition
-      when CIM::Meta::Qualifier
+      when CIM::QualifierDeclaration
 	# nothing
       when String
-	q = CIM::Meta::Qualifier.new(q,type)
+	q = CIM::QualifierDeclaration.new(q,type)
       when Symbol
-	q = CIM::Meta::Qualifier.new(q,type)
+	q = CIM::QualifierDeclaration.new(q,type)
       else
 	raise "Unknown parameter in #{self.class}.include?"
       end
@@ -29,14 +29,14 @@ module CIM
       case q
       when Fixnum
 	return self.array_access[q]
-      when CIM::Schema::Qualifier
+      when CIM::Qualifier
 	q = q.definition
-      when CIM::Meta::Qualifier
+      when CIM::QualifierDeclaration
 	# nothing
       when String
-	q = CIM::Meta::Qualifier.new(q,type)
+	q = CIM::QualifierDeclaration.new(q,type)
       when Symbol
-	q = CIM::Meta::Qualifier.new(q,type)
+	q = CIM::QualifierDeclaration.new(q,type)
       else
 	raise "Unknown parameter in #{self.class}.[]"
       end

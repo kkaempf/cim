@@ -8,6 +8,6 @@ class ReferenceTest < Test::Unit::TestCase
     r = CIM::Reference.new :string, "String"
     assert r
     assert r.is_a? CIM::Reference
-    assert r.kind_of? CIM::Property
+    assert r.kind_of? CIM::ClassFeature
   end
 end

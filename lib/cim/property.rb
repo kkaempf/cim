@@ -1,5 +1,5 @@
 module CIM
-  class Property < CIM::Meta::Feature
+  class Property < CIM::ClassFeature
     attr_reader :default
     def initialize type, name, qualifiers=nil, default=nil
       @default = default
@@ -7,6 +7,9 @@ module CIM
 	qualifiers = [ qualifiers ]
       end
       super type, name, qualifiers
+    end
+    def property?
+      true
     end
   end
 end

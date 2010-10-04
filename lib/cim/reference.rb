@@ -1,5 +1,5 @@
 module CIM
-  class Reference < Property
+  class Reference < CIM::Property
     def reference?
       true
     end

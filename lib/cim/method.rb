@@ -1,5 +1,5 @@
 module CIM
-  class Method < CIM::Meta::Feature
+  class Method < CIM::ClassFeature
     attr_reader :parameters
     def initialize type, name, qualifiers = nil, parameters = nil
       parameters = nil if parameters.kind_of?(::Enumerable) && parameters.empty?
