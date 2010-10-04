@@ -1,0 +1,36 @@
+= cim
+
+* http://github.com/kkaempf/cim
+
+== DESCRIPTION:
+
+* Cim is a pure-Ruby implementation of the CIM meta model.
+
+  Instances of Cim classes are used to define a CIM schema, often
+  represented as a .mof file.
+  See http://www.dmtf.org/standards/cim and http://www.dmtf.org/education/mof
+  for details
+
+  https://rubygems.org/gems/mof is a parser for .mof files and the
+  primary consumer of the cim gem.
+
+== SYNOPSIS:
+
+  require 'cim'
+
+== REQUIREMENTS:
+
+* - none -
+
+== INSTALL:
+
+* sudo gem install cim
+  (resp. rpm -Uhv rubygem-cim)
+
+== LICENSE:
+
+(The Ruby License)
+
+Copyright (c) 2010 Klaus Kämpf <kkaempf@suse.de>
+
+See http://www.ruby-lang.org/en/LICENSE.txt for the full text
