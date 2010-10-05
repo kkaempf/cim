@@ -7,7 +7,7 @@ module CIM
       @value = value unless value == :null
     end
     def == v
-      $stderr.puts "<#{@type}>#{self} == #{v.class}"
+#      $stderr.puts "<#{@type}>#{self} == #{v.class}"
       case v
       when NilClass:   @type == :null && @value.nil?
       when FalseClass: @type == :bool && !@value
