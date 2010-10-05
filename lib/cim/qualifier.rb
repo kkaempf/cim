@@ -22,6 +22,12 @@ module CIM
 	false
       end
     end
+    def name
+      @declaration.name
+    end
+    def type
+      @declaration.type
+    end
     def to_sym
       @declaration.downcase.to_sym
     end
