@@ -18,20 +18,29 @@ module CIM
       self << element
     end
     def << element
-      element.downcase! if element.is_a?(String)
-      e = element.to_sym
-      raise QualifierScopeError.new(element) unless META_ELEMENTS.include?(e)
+      e = normalize element
       @elements << e
       self
     end
-    def has? qualifier
-      @elements.include? qualifier
+    def has? element
+      @elements.include?(normalize element)
+    end
+    alias include? has?
+    def size
+      @elements.size
     end
     def to_s
       "Scope(#{@elements.join(', ')})"
     end
     def to_sym
       @elements.first
+    end
+  private
+    def normalize element
+      element.downcase! if element.is_a?(String)
+      e = element.to_sym
+      raise QualifierScopeError.new(element) unless META_ELEMENTS.include?(e)
+      e
     end
   end
 end
