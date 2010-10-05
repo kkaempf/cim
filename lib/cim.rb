@@ -8,7 +8,7 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 module Cim
-  VERSION = '0.3.0'
+  VERSION = '0.3.1'
   cim_dir = File.join(File.dirname(__FILE__),"cim")
   require cim_dir + '/type'
   require cim_dir + '/variant'

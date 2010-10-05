@@ -1,3 +1,11 @@
+=== 0.3.1 2010-10-05
+
+* Extend API for mof
+
+=== 0.3.0 2010-10-04
+
+* Refactoring for mof
+
 === 0.2.7 2010-10-03
 
 * Initial release
