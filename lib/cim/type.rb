@@ -101,6 +101,9 @@ module CIM
       @size = size
       super type
     end
+    def == t
+      t == :array
+    end
     def to_s
       if @size > 0
 	"#{super}[#{@size}]"
