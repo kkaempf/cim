@@ -2,7 +2,6 @@ module CIM
   require File.join(File.dirname(__FILE__),"qualifier")
   class Class < CIM::NamedElement
     attr_reader :alias_name, :qualifiers, :superclass, :features
-    attr_accessor :parent
     def initialize name, qualifiers, alias_name, superclass, features
       @qualifiers = qualifiers
       @alias_name = alias_name
