@@ -17,11 +17,20 @@ module CIM
       self << flavor
     end
     def << flavor
+      @flavors << normalize(flavor)
+      self
+    end
+    def size
+      @flavors.size
+    end
+    def include? flavor
+      @flavors.include?(normalize flavor)
+    end
+    def normalize flavor
       flavor.downcase! if flavor.kind_of? String
       f = flavor.to_sym
       raise QualifierFlavorError.new("#{flavor}") unless FLAVORS.include? f
-      @flavors << f
-      self
+      f
     end
     def to_sym
       @flavors.first
