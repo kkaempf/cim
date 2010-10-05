@@ -1,7 +1,6 @@
 History.txt
 Manifest.txt
 README.rdoc
-Rakefile
 lib/cim.rb
 lib/cim/association.rb
 lib/cim/class.rb
@@ -19,9 +18,3 @@ lib/cim/property.rb
 lib/cim/qualifier.rb
 lib/cim/qualifiers.rb
 lib/cim/reference.rb
-test/test_loading.rb
-test/test_method.rb
-test/test_property.rb
-test/test_qualifier.rb
-test/test_reference.rb
-test/test_type.rb
