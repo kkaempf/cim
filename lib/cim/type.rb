@@ -8,6 +8,29 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # Type represents a CIM basic type (as string or symbol)
+  # 
+  # The following basic types are known
+  #  :uint8     Unsigned 8-bit integer
+  #  :sint8     Signed 8-bit integer
+  #  :uint16    Unsigned 16-bit integer
+  #  :sint16    Signed 16-bit integer
+  #  :uint32    Unsigned 32-bit integer
+  #  :sint32    Signed 32-bit integer
+  #  :uint64    Unsigned 64-bit integer
+  #  :sint64    Signed 64-bit integer
+  #  :string    UCS-2 string
+  #  :boolean   Boolean
+  #  :real32    IEEE 4-byte floating-point
+  #  :real64    IEEE 8-byte floating-point
+  #  :datetime  A string containing a date-time
+  #  :reference Strongly typed reference
+  #  :char16    16-bit UCS-2 character
+  #  :datetime  Timestamp
+  #  :void      -- allowed for WMI only
+  #
+  #
   class Type
     TYPES = [:null,:void,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
     MATCHES = {
@@ -104,6 +127,12 @@ module CIM
       end
     end
   end
+  
+  #
+  # Array represents an array of identical typed value
+  # 
+  #
+  
   class Array < Type
     attr_reader :size
     def initialize size, type
@@ -121,6 +150,12 @@ module CIM
       end
     end
   end
+  
+  #
+  # ReferenceType is a strongly typed reference to a class
+  # 
+  #
+  
   class ReferenceType < Type
     attr_reader :name
     def initialize name
