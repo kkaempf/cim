@@ -12,7 +12,7 @@ Hoe.plugin :newgem
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.spec 'cim' do
   self.developer 'Klaus Kämpf', 'kkaempf@suse.de'
-
+  self.readme_file = 'README.rdoc'
   self.rubyforge_name       = self.name # TODO this is default value
   # self.extra_deps         = [['activesupport','>= 2.0.2']]
 
