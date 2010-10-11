@@ -7,6 +7,8 @@
 #
 # Licensed under the Ruby license
 #
-class Instance
-  # FIXME
+module CIM
+  class Instance
+    # FIXME
+  end
 end
