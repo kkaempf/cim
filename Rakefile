@@ -18,6 +18,8 @@ $hoe = Hoe.spec 'cim' do
 
 end
 
+remove_task :doc
+
 require 'newgem/tasks'
 Dir['tasks/**/*.rake'].each { |t| load t }
 
