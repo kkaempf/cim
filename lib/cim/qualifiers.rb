@@ -53,6 +53,9 @@ module CIM
       return self.array_access(i) if i
       i
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       return "" if self.empty?
       q = self.join(", ")

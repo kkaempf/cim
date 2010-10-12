@@ -68,7 +68,7 @@ module CIM
       raise TypeError.new("#{type}") unless TYPES.include? @type
     end
     #
-    # returns a string representation of the type
+    # returns a string representation in MOF syntax format
     #
     def to_s
       @type.to_s

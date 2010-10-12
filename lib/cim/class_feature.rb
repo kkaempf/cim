@@ -37,6 +37,9 @@ module CIM
     def reference?
       false
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       s = ""
       s << "#{@qualifiers}\n  " if @qualifiers

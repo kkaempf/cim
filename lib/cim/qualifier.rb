@@ -40,6 +40,9 @@ module CIM
     def to_sym
       @declaration.downcase.to_sym
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       s = "#{@declaration.name.capitalize}"
       case @value

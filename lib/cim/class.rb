@@ -44,6 +44,9 @@ module CIM
     def indication?
       false
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       s = ""
       s << "[#{@qualifiers.join(', ')}]\n" if @qualifiers

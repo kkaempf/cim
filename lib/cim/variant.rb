@@ -43,7 +43,7 @@ module CIM
       end			
     end
     #
-    # Returns a string representation
+    # returns a string representation in MOF syntax format
     #
     def to_s
       if @type == :null

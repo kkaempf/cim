@@ -19,6 +19,9 @@ module CIM
     def method?
       true
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       p = @parameters.join(", ") if @parameters
       "#{super}(#{p})"

@@ -38,6 +38,9 @@ module CIM
     def size
       @elements.size
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       "Scope(#{@elements.join(', ')})"
     end
