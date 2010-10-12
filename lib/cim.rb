@@ -11,7 +11,9 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 #
-# CIM is an implementation of the Common Information Model (CIM) meta schema[1]
+# The CIM Ruby gem is an implementation of the Common Information Model (CIM) meta schema[1]
+#
+# = About
 #
 # The Common Information Model provides a common definition of management
 # information for systems, networks, applications and services.[2]
@@ -23,11 +25,19 @@ $:.unshift(File.dirname(__FILE__)) unless
 # Elements of the CIM model can be defined as text files using the Managed
 # Object Format (MOF)[3] or by inspection on a running CIM Object Manager (CIMOM)[4]
 # 
-# 
-# [1] http://www.wbemsolutions.com/tutorials/CIM/metaschema.html
-# [2] http://www.dmtf.org/standards/cim
-# [3] http://github.com/kkaempf/mof
-# [4] http://github.com/dmacvicar/ruby-sfcc
+# Primary users of the CIM gem are the MOF gem [5], a parser for MOF files,
+# and ruby-sfcc[6], a Ruby CIM client api.
+#
+# = Usage
+#   require 'cim'
+#
+# = Links
+# 1. http://www.wbemsolutions.com/tutorials/CIM/metaschema.html
+# 2. http://www.dmtf.org/standards/cim
+# 3. http://www.wbemsolutions.com/tutorials/CIM/cim-mof.html
+# 4. http://www.wbemsolutions.com/tutorials/CIM/glossary.html#c-gloss
+# 5. http://github.com/kkaempf/mof
+# 6. http://github.com/dmacvicar/ruby-sfcc
 #
 
 module CIM
