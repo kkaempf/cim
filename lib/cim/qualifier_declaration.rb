@@ -1,5 +1,5 @@
 #
-# cim/qualifier_declaration.rb
+# cim/qualifier_declaration.rb - class CIM::QualifierDeclaration
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -21,24 +21,24 @@ module CIM
   # Min, Max:: (MinLen, MaxLen, MinValue, MaxValue) limits
   #
   # A QualifierDeclaration declares a qualifier by
-  # * name
-  # * type (defaults to bool)
-  # * default value (defaults to false)
-  # * scope (where the qualifier can be used)
-  # * flavor (how the qualifier is applied)
+  # name:: (String)
+  # type:: (Type) (defaults to bool)
+  # default value:: (Variant) (defaults to false)
+  # scopes:: (QualifierScopes) (where the qualifier can be used)
+  # flavor:: (QualifierFlavors) (how the qualifier is applied)
   #
   #
   class QualifierDeclaration < NamedElement
 
-    attr_reader :type, :default, :scope, :flavor
+    attr_reader :type, :default, :scopes, :flavors
     #
     # Create a new QualifierDeclaration
     #
-    def initialize name, type = :bool, default = false, scope = nil, flavor = nil
+    def initialize name, type = :bool, default = false, scopes = nil, flavors = nil
       @type = (type.kind_of? Type) ? type : Type.new(type)
       @default = (default.nil? || default.is_a?(CIM::Variant)) ? default : CIM::Variant.new(@type, default)
-      @scope = scope
-      @flavor = flavor
+      @scopes = scopes
+      @flavors = flavors
       super name
     end
     #
@@ -61,8 +61,8 @@ module CIM
     def to_s
       s = "Qualifier #{@name} : #{@type}"
       s << " = #{@default}" if @default
-      s << ",\n\t#{@scope}" if @scope
-      s << ",\n\t#{@flavor}" if @flavor
+      s << ",\n\t#{@scopes}" if @scopes
+      s << ",\n\t#{@flavors}" if @flavors
       s
     end
   end

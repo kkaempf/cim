@@ -1,5 +1,5 @@
 #
-# cim/class_feature.rb
+# cim/class_feature.rb - class CIM::ClassFeature
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -10,12 +10,10 @@
 module CIM
   # Shared between Property and Method
   class ClassFeature < NamedElement
-    attr_reader :type, :qualifiers
+    attr_reader :type
     def initialize type, name, qualifiers = nil
       @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
-      qualifiers = nil if qualifiers.is_a?(::Array) && qualifiers.empty?
-      @qualifiers = qualifiers
-      super name
+      super name, qualifiers
     end
     # if has key qualifier
     def key?

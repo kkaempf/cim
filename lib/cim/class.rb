@@ -1,5 +1,5 @@
 #
-# cim/class.rb
+# cim/class.rb - class CIM::Class
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -9,21 +9,27 @@
 #
 module CIM
   require File.join(File.dirname(__FILE__),"qualifier")
+  #
+  # A Class is a central element in the object-oriented CIM schema
+  #
+  # Classes can be derived from other classes, creating a hierachical model.
+  #
+  # Classes have qualifiers to describe the class characteristics
+  # and contain features (properties or methods).
+  #
   class Class < CIM::NamedElement
-    attr_reader :alias_name, :qualifiers, :superclass, :features
-    def initialize name, qualifiers, alias_name, superclass, features
-      @qualifiers = qualifiers
+    attr_reader :alias_name, :superclass, :features
+    def initialize name, qualifiers = nil, alias_name = nil, superclass = nil, features = nil
       @alias_name = alias_name
       @superclass = superclass
       features = nil if features.is_a?(Array) && features.empty?
       @features = features
       #	puts "CIM::Class.new(#{@features})"
-      super name
+      super name, qualifiers
     end
-    def add_type t
-      @ptype << t
-    end
+    #
     # true if class has instances (instance provider)
+    #
     def instance?
       @features.size > 0
     end

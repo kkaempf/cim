@@ -45,7 +45,7 @@ module CIM
   require 'cim/type'
   require 'cim/variant'
   require 'cim/qualifier_flavors'
-  require 'cim/qualifier_scope'
+  require 'cim/qualifier_scopes'
   require 'cim/named_element'
   require 'cim/qualifier_declaration'
   require 'cim/qualifier'

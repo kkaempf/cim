@@ -1,5 +1,5 @@
 #
-# cim/type.rb
+# cim/type.rb - class CIM::Type, class CIM::Array, class CIM::ReferenceType
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -126,7 +126,7 @@ module CIM
     end
     public
     #
-    # check if another CIM::Type or CIM::Variant matches
+    # check if another Type or Variant matches
     #
     def matches? x
       #	puts ">#{self}<{#{self.class}}.matches?>#{x.inspect}<{#{x.class}}"

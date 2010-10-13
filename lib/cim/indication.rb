@@ -1,5 +1,5 @@
 #
-# cim/indication.rb
+# cim/indication.rb - class CIM::Indication
 #
 # A pure-Ruby implementation of the CIM meta model.
 #

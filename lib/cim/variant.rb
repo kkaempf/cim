@@ -1,5 +1,5 @@
 #
-# cim/variant.rb
+# cim/variant.rb - class CIM::Variant
 #
 # A pure-Ruby implementation of the CIM meta model.
 #

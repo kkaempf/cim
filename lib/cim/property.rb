@@ -1,5 +1,5 @@
 #
-# cim/property.rb
+# cim/property.rb - class CIM::Property
 #
 # A pure-Ruby implementation of the CIM meta model.
 #

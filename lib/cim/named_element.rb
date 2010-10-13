@@ -1,5 +1,5 @@
 #
-# cim/named_element.rb
+# cim/named_element.rb - class CIM::NamedElement
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -8,18 +8,50 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # The NamedElement is a basic building block for the CIM schema, acting as a base class
+  # for Class and Property
+  #
+  # A NamedElement has a name (String) and qualifiers (Qualifier)
+  #
   class NamedElement
-    attr_reader :name, :characteristics
-    def initialize name
+    attr_reader :name, :qualifiers
+    #
+    # Create a NamedElement with a name and qualifiers
+    #
+    def initialize name, qualifiers = []
       raise "NamedElement must have a name" unless name
       @name = name.to_s
-      @characteristics = []
+      qualifiers = nil if qualifiers.is_a?(::Array) && qualifiers.empty?
+      @qualifiers = qualifiers
     end
+    #
+    # Add a Qualifier to the NamedElements qualifiers
+    #
     def << qualifier
-      @characteristics << qualifier
+      @qualifiers << (normalize qualifier)
     end
-    def has? qualifier
-      @characteristics.include? qualifier
+    #
+    # Check if a Qualifier is included 
+    #
+    def include? qualifier
+      @qualifiers.include?(normalize qualifier)
+    end
+    alias includes? include?
+    #
+    # Returns a string representation of the NamedElement
+    #
+    def to_s
+      s = ""
+      s << "[#{@qualifiers.join(', ')}]\n " if @qualifiers
+      s << "#{@name}"
+    end
+    private
+    def normalize qualifier
+      unless qualifier.is_a?(CIM::Qualifier)
+	qualifier = Qualifier.new(qualifier)
+      end
+      qualifier
     end
   end
 end

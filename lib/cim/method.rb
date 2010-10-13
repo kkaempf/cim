@@ -1,5 +1,5 @@
 #
-# cim/method.rb
+# cim/method.rb - class CIM::Method
 #
 # A pure-Ruby implementation of the CIM meta model.
 #

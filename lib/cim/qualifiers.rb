@@ -1,5 +1,5 @@
 #
-# cim/qualifiers.rb
+# cim/qualifiers.rb - class CIM::Qualifiers
 #
 # A pure-Ruby implementation of the CIM meta model.
 #

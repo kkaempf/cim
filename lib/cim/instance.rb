@@ -1,5 +1,5 @@
 #
-# cim/instance.rb
+# cim/instance.rb - class CIM::Instance
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
