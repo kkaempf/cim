@@ -34,7 +34,7 @@ module CIM
     def initialize name, qualifiers = nil, alias_name = nil, superclass = nil, features = nil
       @alias_name = alias_name
       @superclass = superclass
-      features = nil if features.is_a?(Array) && features.empty?
+      features = nil if features.kind_of?(::Enumerable) && features.empty?
       @features = features
       #	puts "CIM::Class.new(#{@features})"
       super name, qualifiers
