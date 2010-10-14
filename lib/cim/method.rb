@@ -26,7 +26,6 @@ module CIM
     def initialize type, name, qualifiers = nil, parameters = nil
       parameters = nil if parameters.kind_of?(::Enumerable) && parameters.empty?
       @parameters = parameters
-      qualifiers = [ qualifiers ] unless qualifiers.kind_of?(Enumerable)
       super type,name,qualifiers
     end
     #
