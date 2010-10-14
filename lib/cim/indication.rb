@@ -8,8 +8,13 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # Indication is a Class whose Instances are sending asynchronous notifications
+  #
   class Indication < Class
+    #
     # true if class has indications (indication provider)
+    #
     def indication?
       true
     end

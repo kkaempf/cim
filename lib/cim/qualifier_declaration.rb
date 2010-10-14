@@ -59,13 +59,13 @@ module CIM
       end
     end
     #
-    # return a symbol representation of the qualifier name
+    # return a Symbol representation of the qualifier name
     #
     def to_sym
       @name.downcase.to_sym
     end
     #
-    # returns a string representation in MOF syntax format
+    # returns a String representation in MOF syntax format
     #
     def to_s
       s = "Qualifier #{@name} : #{@type}"

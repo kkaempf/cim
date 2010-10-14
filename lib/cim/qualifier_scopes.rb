@@ -1,5 +1,5 @@
 #
-# cim/qualifier_scopes.rb- class CIM::QualifierScopes, class CIM::QualifierScopesError
+# cim/qualifier_scopes.rb - class CIM::QualifierScopes, class CIM::QualifierScopesError
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -10,6 +10,9 @@
 module CIM
     
   class QualifierScopesError < ArgumentError
+    #
+    # Raised if wrong Scope passed
+    #
     def initialize element, msg = nil
       @element = element
       super msg

@@ -56,6 +56,5 @@ module CIM
   require 'cim/method'
   require 'cim/class'
   require 'cim/association'
-  require 'cim/instance'
   require 'cim/indication'
 end

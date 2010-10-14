@@ -8,14 +8,30 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # A Qualifier is a modifier containing information to describe a Class, an Instance,
+  # a Property, a Method or a parameter.
+  #
+  # Qualifier can be seen as an instance of QualifierDeclaration
+  #
   class Qualifier
     attr_reader :declaration, :value, :flavor
+    #
+    # call-seq:
+    #   Qualifier.new qualifier_declaration
+    #   Qualifier.new qualifier_declaration, value
+    #   Qualifier.new qualifier_declaration, value, flavor
+    #
     def initialize declaration, value = nil, flavor = nil
       raise "Not a CIM::QualifierDeclaration: #{declaration.inspect}" unless declaration.is_a?(CIM::QualifierDeclaration)
       @declaration = declaration
+      # FIXME, check if the value type matches the declaration type
       @value = value
       @flavor = flavor
     end
+    #
+    # Check for equality against Qualifier, QualifierDeclaration, String, or Symbol
+    #
     def == q
       #	puts "CIM::Qualifier ->#{self} == #{q.inspect}"
       case q
@@ -25,20 +41,31 @@ module CIM
 	(@flavor == q.flavor)
       when CIM::QualifierDeclaration
 	@declaration == q  
+      when String
+	@declaration.name.downcase == q.downcase && @value.nil? && @flavor.nil?
       when Symbol
-	q.to_s.downcase == @declaration.name.downcase && @value.nil? && @flavor.nil?
+	self == q.to_s # recycle
       else
 	false
       end
     end
+    #
+    # Name of qualifier (String)
+    #
     def name
       @declaration.name
     end
+    #
+    # Type of qualifier (Type)
+    #
     def type
       @declaration.type
     end
+    #
+    # Name of qualifier as symbol (Symbol)
+    #
     def to_sym
-      @declaration.downcase.to_sym
+      @declaration.to_sym
     end
     #
     # returns a string representation in MOF syntax format

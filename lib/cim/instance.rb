@@ -8,7 +8,12 @@
 # Licensed under the Ruby license
 #
 module CIM
-  class Instance
-    # FIXME
+  #
+  # Instance represents a static Class object (defined in a MOF file)
+  #
+  # --
+  # - to be implemented
+  #
+  class Instance < Class
   end
 end

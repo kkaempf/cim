@@ -20,6 +20,7 @@ module CIM
     attr_reader :type
     protected
     def initialize type, name, qualifiers = nil
+    # :notnew:
       @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
       super name, qualifiers
     end
@@ -31,15 +32,15 @@ module CIM
     def static?
       false
     end
-    # if property
+    # if Property
     def property?
       false
     end
-    # if method
+    # if Method
     def method?
       false
     end
-    # if reference
+    # if Reference
     def reference?
       false
     end
