@@ -24,11 +24,11 @@ module CIM
   #
   # Allowed flavors are
   #
-  # amended:: Marks a qualifier value for localization (default: false)
+  # amended:: [wmi] Marks a qualifier value for localization (default: false)
   # enableoverride:: The qualifier can be overriden (in a subclass) (default: true)
   # disableoverride:: The qualifier can not be overriden (default: false)
   # restricted:: The qualifier only applies to the class in which it is declared (default: false)
-  # toinstance:: 
+  # toinstance:: [wmi]
   # tosubclass:: The qualifier is inherited by any subclass (default: true)
   # translatable:: Marks a qualifier value for localization (default: false)
   #
@@ -45,9 +45,11 @@ module CIM
     #    
     # The flavor can be named as a string or a symbol.
     #
-    def initialize flavor
+    def initialize *flavors
       @flavors = []
-      self << flavor
+      flavors.flatten.each do |flavor|
+	self << flavor
+      end
     end
     #
     # Add a flavor to the set

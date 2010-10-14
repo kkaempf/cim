@@ -34,9 +34,11 @@ module CIM
     #
     # raises QualifierScopesError
     #
-    def initialize element = :any
+    def initialize *elements
       @elements = []
-      self << element
+      elements.flatten.each do |element|
+	self << element
+      end
     end
     #
     # call-seq:

@@ -14,7 +14,7 @@ module CIM
   class QualifierSet < ::Array
     def initialize *args
       super 0
-      args.each do |q|
+      args.flatten.each do |q|
 	case q
 	when QualifierDeclaration: q = Qualifier.new q
 	when Qualifier:
