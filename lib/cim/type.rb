@@ -86,6 +86,7 @@ module CIM
       case t
       when Type: t.type == @type
       when Symbol: t == @type
+      when String: t.downcase == @type.to_s
       else
 	false
       end

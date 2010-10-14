@@ -45,9 +45,18 @@ module CIM
     # Test for equality by comparing name and type
     #
     def == q
-      #	puts "#{@name}:#{@type} == #{q.name}:#{q.type}"
-      (@name.downcase == q.name.downcase) &&
-        (@type.nil? || q.type.nil? || (@type == q.type))
+#      puts "QualifierDeclaration(#{@name}:#{@type}) == #{q.class}(#{q})"
+      case q
+      when QualifierDeclaration
+	(@name.downcase == q.name.downcase) &&
+          (@type.nil? || q.type.nil? || (@type == q.type))
+      when String
+	@name.downcase == q.downcase
+      when Symbol
+	@name.downcase == q.to_s.downcase
+      else
+	false
+      end
     end
     #
     # return a symbol representation of the qualifier name

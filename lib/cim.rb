@@ -49,7 +49,7 @@ module CIM
   require 'cim/named_element'
   require 'cim/qualifier_declaration'
   require 'cim/qualifier'
-  require 'cim/qualifiers'
+  require 'cim/qualifier_set'
   require 'cim/class_feature'
   require 'cim/property'
   require 'cim/reference'
