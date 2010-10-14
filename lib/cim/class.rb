@@ -19,6 +19,18 @@ module CIM
   #
   class Class < CIM::NamedElement
     attr_reader :alias_name, :superclass, :features
+    #
+    # Creates a new Class with name (String), qualifiers, alias, superclass and features
+    #
+    # Features are class attributes, namely Property, Method, or Reference
+    #
+    # call-seq:
+    #   Class.new("MyClass")
+    #   Class.new("MyClass", qualifiers)
+    #   Class.new("MyClass", qualifiers, "my_class")
+    #   Class.new("MyClass", qualifiers, "my_class", "SuperClass")
+    #   Class.new("MyClass", qualifiers, "my_class", "SuperClass", features)
+    #
     def initialize name, qualifiers = nil, alias_name = nil, superclass = nil, features = nil
       @alias_name = alias_name
       @superclass = superclass
@@ -33,7 +45,9 @@ module CIM
     def instance?
       @features.size > 0
     end
+    #
     # true if class has methods (method provider)
+    #
     def method?
       @features.each do |f|
 	case f
@@ -42,11 +56,15 @@ module CIM
       end
       false
     end
+    #
     # true if class has associations (association provider)
+    #
     def association?
       false
     end
+    #
     # true if class has indications (indication provider)
+    #
     def indication?
       false
     end

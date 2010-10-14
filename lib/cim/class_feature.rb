@@ -8,9 +8,17 @@
 # Licensed under the Ruby license
 #
 module CIM
-  # Shared between Property and Method
+  #
+  # ClassFeature is the base class for Class Property and Method
+  #
+  # A ClassFeature has a type (Type), name (String), and optional Qualifiers
+  #
+  # Access to ClassFeature attributes is *protected*, use the derived
+  # classes Property, Method and Reference
+  #
   class ClassFeature < NamedElement
     attr_reader :type
+    protected
     def initialize type, name, qualifiers = nil
       @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
       super name, qualifiers
