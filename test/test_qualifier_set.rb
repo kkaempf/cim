@@ -16,6 +16,12 @@ class QualifierSetTest < Test::Unit::TestCase
   def test_key
     assert_equal 3, @qualifiers.size
   end
+  def test_prefill
+    q = CIM::QualifierSet.new "a", :b
+    assert 2, q.size
+    assert q.include?( "a" )
+    assert q.include?( "b", :bool )
+  end
   def test_include
     assert @qualifiers.include?( :flag )
     assert @qualifiers.include?( "flag" )

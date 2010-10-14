@@ -12,17 +12,25 @@ module CIM
   # The NamedElement is a basic building block for the CIM schema, acting as a base class
   # for Class and Property
   #
-  # A NamedElement has a name (String) and qualifiers (Qualifier)
+  # A NamedElement has a name (String) and qualifiers (Qualifiers)
   #
   class NamedElement
     attr_reader :name, :qualifiers
     #
     # Create a NamedElement with a name and qualifiers
     #
-    def initialize name, qualifiers = []
+    def initialize name, qualifiers = nil
       raise "NamedElement must have a name" unless name
       @name = name.to_s
-      qualifiers = nil if qualifiers.is_a?(::Array) && qualifiers.empty?
+      unless qualifiers.nil?
+	unless qualifiers.is_a?(QualifierSet)
+	  if qualifiers.kind_of?(::Enumerable) && qualifiers.empty?
+	    qualifiers = nil 
+	  else
+	    qualifiers = QualifierSet.new qualifiers
+	  end
+	end
+      end
       @qualifiers = qualifiers
     end
     #
@@ -55,4 +63,3 @@ module CIM
     end
   end
 end
-

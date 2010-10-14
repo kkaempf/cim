@@ -12,6 +12,18 @@ module CIM
   # Set of Qualifier
   #
   class QualifierSet < ::Array
+    def initialize *args
+      super 0
+      args.each do |q|
+	case q
+	when QualifierDeclaration: q = Qualifier.new q
+	when Qualifier:
+	else
+	  q = Qualifier.new(QualifierDeclaration.new q)
+	end
+	self << q
+      end
+    end
     #
     # check if qualifier exists
     #
