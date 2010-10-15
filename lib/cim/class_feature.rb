@@ -1,5 +1,5 @@
 #
-# cim/class_feature.rb
+# cim/class_feature.rb - class CIM::ClassFeature
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -8,14 +8,21 @@
 # Licensed under the Ruby license
 #
 module CIM
-  # Shared between Property and Method
+  #
+  # ClassFeature is the base class for Class Property and Method
+  #
+  # A ClassFeature has a type (Type), name (String), and optional Qualifiers
+  #
+  # Access to ClassFeature attributes is *protected*, use the derived
+  # classes Property, Method and Reference
+  #
   class ClassFeature < NamedElement
-    attr_reader :type, :qualifiers
+    attr_reader :type
+    protected
     def initialize type, name, qualifiers = nil
+    # :notnew:
       @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
-      qualifiers = nil if qualifiers.is_a?(::Array) && qualifiers.empty?
-      @qualifiers = qualifiers
-      super name
+      super name, qualifiers
     end
     # if has key qualifier
     def key?
@@ -25,18 +32,21 @@ module CIM
     def static?
       false
     end
-    # if property
+    # if Property
     def property?
       false
     end
-    # if method
+    # if Method
     def method?
       false
     end
-    # if reference
+    # if Reference
     def reference?
       false
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       s = ""
       s << "#{@qualifiers}\n  " if @qualifiers

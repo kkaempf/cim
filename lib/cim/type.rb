@@ -1,5 +1,5 @@
 #
-# cim/type.rb
+# cim/type.rb - class CIM::Type, class CIM::Array, class CIM::ReferenceType
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -7,28 +7,30 @@
 #
 # Licensed under the Ruby license
 #
+
+
 module CIM
   #
-  # Type represents a CIM basic type (as string or symbol)
+  # Type represents a CIM basic type
   # 
-  # The following basic types are known
-  #  :uint8     Unsigned 8-bit integer
-  #  :sint8     Signed 8-bit integer
-  #  :uint16    Unsigned 16-bit integer
-  #  :sint16    Signed 16-bit integer
-  #  :uint32    Unsigned 32-bit integer
-  #  :sint32    Signed 32-bit integer
-  #  :uint64    Unsigned 64-bit integer
-  #  :sint64    Signed 64-bit integer
-  #  :string    UCS-2 string
-  #  :boolean   Boolean
-  #  :real32    IEEE 4-byte floating-point
-  #  :real64    IEEE 8-byte floating-point
-  #  :datetime  A string containing a date-time
-  #  :reference Strongly typed reference
-  #  :char16    16-bit UCS-2 character
-  #  :datetime  Timestamp
-  #  :void      -- allowed for WMI only
+  # The following basic types are known:
+  # uint8::     Unsigned 8-bit integer
+  # sint8::     Signed 8-bit integer
+  # uint16::    Unsigned 16-bit integer
+  # sint16::    Signed 16-bit integer
+  # uint32::    Unsigned 32-bit integer
+  # sint32::    Signed 32-bit integer
+  # uint64::    Unsigned 64-bit integer
+  # sint64::    Signed 64-bit integer
+  # string::    UCS-2 string
+  # bool::      Boolean
+  # real32::    IEEE 4-byte floating-point
+  # real64::    IEEE 8-byte floating-point
+  # datetime::  A string containing a date-time
+  # reference:: Strongly typed reference
+  # char16::    16-bit UCS-2 character
+  # datetime::  Timestamp
+  # void::      -- allowed for WMI only
   #
   #
   class Type
@@ -55,21 +57,36 @@ module CIM
       :array => [ :null ]
     }
     attr_reader :type
+    #
+    # Basic types are created by-symbol or by-name
+    #
+    # CIM::Type.new(:bool) == CIM::Type.new("bool")
+    #
     def initialize type
       type.downcase! if type.is_a? String
       @type = type.to_sym
       raise TypeError.new("#{type}") unless TYPES.include? @type
     end
+    #
+    # returns a string representation in MOF syntax format
+    #
     def to_s
       @type.to_s
     end
+    #
+    # returns a symbol representation of the type
+    #
     def to_sym
       @type
     end
+    #
+    # type equality
+    #
     def == t
       case t
       when Type: t.type == @type
       when Symbol: t == @type
+      when String: t.downcase == @type.to_s
       else
 	false
       end
@@ -109,6 +126,9 @@ module CIM
       end
     end
     public
+    #
+    # check if another Type or Variant matches
+    #
     def matches? x
       #	puts ">#{self}<{#{self.class}}.matches?>#{x.inspect}<{#{x.class}}"
       case x
@@ -131,17 +151,26 @@ module CIM
   #
   # Array represents an array of identical typed value
   # 
-  #
-  
+  #  
   class Array < Type
     attr_reader :size
+    #
+    # Arrays are initialized by size and type
+    # Passing 0 (zero) as the size creates an unlimited array
+    #
     def initialize size, type
       @size = size
       super type
     end
+    #
+    # An array is equal to any other array, regardless of the enclosed type
+    #
     def == t
       t == :array
     end
+    #
+    # returns a string representation of the array type
+    #
     def to_s
       if @size > 0
 	"#{super}[#{@size}]"
@@ -155,13 +184,18 @@ module CIM
   # ReferenceType is a strongly typed reference to a class
   # 
   #
-  
   class ReferenceType < Type
     attr_reader :name
+    #
+    # Creates a strongly typed reference to class +name+
+    #
     def initialize name
       @name = name
-      super :class
+      super "class"
     end
+    #
+    # returns a string representation of the reference type
+    #
     def to_s
       "#{@name} ref"
     end

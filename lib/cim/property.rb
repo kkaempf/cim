@@ -1,5 +1,5 @@
 #
-# cim/property.rb
+# cim/property.rb - class CIM::Property
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -8,15 +8,28 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # A Property defines a data member of a Class.
+  #
+  # For method members, see Method.
+  #
   class Property < CIM::ClassFeature
     attr_reader :default
-    def initialize type, name, qualifiers=nil, default=nil
+    #
+    # Create a Property with type (Type) and name (String), optional QualifierSet and default value
+    #
+    # call-seq:
+    #   Property.new(:bool, "flag")
+    #   Property.new(:bool, "flag", qualifier_set)
+    #   Property.new(:bool, "flag", qualifier_set, true)
+    #
+    def initialize type, name, qualifier_set=nil, default=nil
       @default = default
-      unless qualifiers.nil? || qualifiers.kind_of?(Enumerable)
-	qualifiers = [ qualifiers ]
-      end
-      super type, name, qualifiers
+      super type, name, qualifier_set
     end
+    #
+    # Makes a Property recognizable in the set of Class features.
+    #
     def property?
       true
     end

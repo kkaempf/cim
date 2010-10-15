@@ -9,7 +9,8 @@ class MethodTest < Test::Unit::TestCase
     assert m
     assert_equal "Foo", m.name
     assert m.qualifiers.size > 0
-#    assert m.qualifiers.include?( :description, :string )
+    assert m.qualifiers.include?( :description )
+    assert m.qualifiers.include?( :description, :string )
 #    assert_equal "This is a foo method", m.description
     assert_equal false, m.to_s.empty?
   end

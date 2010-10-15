@@ -1,5 +1,5 @@
 #
-# cim/instance.rb
+# cim/instance.rb - class CIM::Instance
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -7,6 +7,13 @@
 #
 # Licensed under the Ruby license
 #
-class Instance
-  # FIXME
+module CIM
+  #
+  # Instance represents a static Class object (defined in a MOF file)
+  #
+  # --
+  # - to be implemented
+  #
+  class Instance < Class
+  end
 end

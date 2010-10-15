@@ -1,5 +1,5 @@
 #
-# cim/reference.rb
+# cim/reference.rb - class CIM::Reference
 #
 # A pure-Ruby implementation of the CIM meta model.
 #
@@ -8,7 +8,16 @@
 # Licensed under the Ruby license
 #
 module CIM
+  #
+  # Reference is a pointer (reference) to a Class
+  #
+  # A Reference is a special type of Property reserved for
+  # use in Associations
+  #
   class Reference < CIM::Property
+    #
+    # Identifies a Property as a Reference
+    #
     def reference?
       true
     end
