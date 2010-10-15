@@ -18,31 +18,41 @@ module CIM
   #
   class ClassFeature < NamedElement
     attr_reader :type
+    #
+    # if has key qualifier
+    #
+    def key?
+      @qualifiers && @qualifiers.include?(:key,:bool)
+    end
+    #
+    # if static (class-level) feature
+    #
+    def static?
+      false
+    end
+    #
+    # if Property
+    #
+    def property?
+      false
+    end
+    #
+    # if Method
+    #
+    def method?
+      false
+    end
+    #
+    # if Reference
+    #
+    def reference?
+      false
+    end
     protected
     def initialize type, name, qualifiers = nil
     # :notnew:
       @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
       super name, qualifiers
-    end
-    # if has key qualifier
-    def key?
-      @qualifiers && @qualifiers.include?(:key,:bool)
-    end
-    # if static (class-level) feature
-    def static?
-      false
-    end
-    # if Property
-    def property?
-      false
-    end
-    # if Method
-    def method?
-      false
-    end
-    # if Reference
-    def reference?
-      false
     end
     #
     # returns a string representation in MOF syntax format
