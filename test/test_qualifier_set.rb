@@ -29,4 +29,11 @@ class QualifierSetTest < Test::Unit::TestCase
     assert @qualifiers.include?( "flag", "bool" )
     assert !@qualifiers.include?( "flag", :string )
   end
+  def test_access
+    assert @qualifiers[:flag]
+    assert @qualifiers["flag"]
+    assert @qualifiers["flag", :bool]
+    assert @qualifiers["flag", "bool"]
+    assert !@qualifiers["flag", :string]
+  end
 end

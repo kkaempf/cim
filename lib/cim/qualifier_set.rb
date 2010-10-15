@@ -34,12 +34,19 @@ module CIM
     #   qualifier_set.includes?("description", :string) => bool
     #
     def includes? qualifier,type=nil
+      (self[qualifier,type]) ? true : false
+    end
+    alias include? includes?
+    #
+    # get qualifier by name and type
+    #
+    def [] qualifier,type=nil
       self.each do |q|
 	unless type.nil?
 	  next unless q.type == type
 	end
 #	puts "#{q} == #{qualifier}<#{type}>"
-	return true if case qualifier
+	return q if case qualifier
                        when CIM::Qualifier
 			 q == qualifier.declaration
 		       when CIM::QualifierDeclaration
@@ -49,35 +56,11 @@ module CIM
 		       when Symbol
 			 q.declaration == qualifier
 		       else
-			 raise "Unknown parameter in #{self.class}.include?"
+			 raise "Unknown parameter in #{self.class}[]"
 		       end
       end
-      false
+      nil
     end
-    alias include? includes?
-    #
-    # get qualifier by name and type
-    #
-    alias array_access []
-#    def [] q,type=:null
-#      case q
-#      when Fixnum
-#	return self.array_access[q]
-#      when CIM::Qualifier
-#	q = q.definition
-#      when CIM::QualifierDeclaration
-#	# nothing
-#      when String
-#	q = CIM::QualifierDeclaration.new(q,type)
-#      when Symbol
-#	q = CIM::QualifierDeclaration.new(q,type)
-#      else
-#	raise "Unknown parameter in #{self.class}.[]"
-#      end
-#      i = self.index(q)
-#      return self.array_access(i) if i
-#      i
-#    end
     #
     # returns a string representation in MOF syntax format
     #
