@@ -40,6 +40,14 @@ module CIM
       super name, qualifiers
     end
     #
+    # Iterate over features flagged as keys
+    #
+    def each_key
+      @features.each do |f|
+	yield f if f.key?
+      end
+    end
+    #
     # true if class has instances (instance provider)
     #
     def instance?
