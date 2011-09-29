@@ -1,6 +1,13 @@
-=== 0.4.0 2011-09-29
+=== 0.5.0 2011-09-29
 
 * Clean up Rakefile, support Bundler
+* Add QualifierSet[] access function
+* Make check functions like key?, etc. public
+
+=== 0.4.1 2010-10-14
+
+* More tests
+* Refactor Qualifiers to QualifierSet, QualifierSet includes Qualifiers
 
 === 0.3.1 2010-10-05
 

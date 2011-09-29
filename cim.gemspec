@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "cim/version"
+require "cim"
 
 Gem::Specification.new do |s|
   s.name        = "cim"
-  s.version     = CIM::Version::VERSION
+  s.version     = CIM::VERSION
 
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Klaus Kämpf"]
