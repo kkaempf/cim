@@ -3,3 +3,4 @@ pkg
 lib/cim/doc
 lib/doc
 doc
+.yardoc
