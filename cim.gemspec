@@ -18,6 +18,9 @@ http://www.dmtf.org/education/mof for details}
   
   s.rubyforge_project = "cim"
 
+  s.add_development_dependency('rake')
+  s.add_development_dependency('bundler')
+
   s.files         = `git ls-files`.split("\n")
   s.files.reject! { |fn| fn == '.gitignore' }
   s.extra_rdoc_files    = Dir['README*', 'TODO*', 'CHANGELOG*', 'LICENSE']
