@@ -51,7 +51,7 @@ module CIM
     protected
     def initialize type, name, qualifiers = nil
     # :notnew:
-      @type = (type.is_a? CIM::Type) ? type : CIM::Type.new(type)
+      @type = CIM::Type.normalize type
       super name, qualifiers
     end
     #

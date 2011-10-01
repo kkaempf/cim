@@ -15,6 +15,10 @@ module CIM
   # Qualifier can be seen as an instance of QualifierDeclaration
   #
   class Qualifier
+    def self.normalize type
+      (type.is_a? self) ? type : self.new(type)
+    end
+    
     attr_reader :declaration, :value, :flavor
     #
     # call-seq:

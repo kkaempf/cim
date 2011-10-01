@@ -7,6 +7,7 @@
 #
 # Licensed under the Ruby license
 #
+
 module CIM
   #
   # The NamedElement is a basic building block for the CIM schema, acting as a base class
@@ -22,28 +23,19 @@ module CIM
     def initialize name, qualifiers = nil
       raise "NamedElement must have a name" unless name
       @name = name.to_s
-      unless qualifiers.nil?
-	unless qualifiers.is_a?(QualifierSet)
-	  if qualifiers.kind_of?(::Enumerable) && qualifiers.empty?
-	    qualifiers = nil 
-	  else
-	    qualifiers = QualifierSet.new qualifiers
-	  end
-	end
-      end
-      @qualifiers = qualifiers
+      @qualifiers = (qualifiers) ? CIM::QualifierSet.normalize(qualifiers) : CIM::QualifierSet.new
     end
     #
     # Add a Qualifier to the NamedElements qualifiers
     #
     def << qualifier
-      @qualifiers << (normalize qualifier)
+      @qualifiers << CIM::Qualifier.normalize(qualifier)
     end
     #
     # Check if a Qualifier is included 
     #
     def include? qualifier
-      @qualifiers.include?(normalize qualifier)
+      @qualifiers.include? CIM::Qualifier.normalize(qualifier)
     end
     alias includes? include?
     #
@@ -53,13 +45,6 @@ module CIM
       s = ""
       s << "[#{@qualifiers.join(', ')}]\n " if @qualifiers
       s << "#{@name}"
-    end
-    private
-    def normalize qualifier
-      unless qualifier.is_a?(CIM::Qualifier)
-	qualifier = Qualifier.new(qualifier)
-      end
-      qualifier
     end
   end
 end

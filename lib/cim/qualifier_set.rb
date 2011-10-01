@@ -12,6 +12,11 @@ module CIM
   # Set of Qualifier
   #
   class QualifierSet < ::Array
+    def self.normalize type
+      (type.is_a? self) ? type : self.new(type)
+    end
+
+
     def initialize *args
       super 0
       args.flatten.each do |q|
@@ -22,7 +27,7 @@ module CIM
 	  q = Qualifier.new(QualifierDeclaration.new q)
 	end
 	self << q
-      end
+      end if args
     end
     #
     # check if qualifier exists

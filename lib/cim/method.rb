@@ -14,7 +14,6 @@ module CIM
   # For data members, see Property.
   #
   class Method < CIM::ClassFeature
-    attr_reader :parameters
     #
     # Create a Method with return type (Type) and name (String), optional Qualifiers and parameters (Property)
     #
@@ -24,9 +23,14 @@ module CIM
     #   Method.new(:bool, "do_something", qualifiers, parameters)
     #
     def initialize type, name, qualifiers = nil, parameters = nil
-      parameters = nil if parameters.kind_of?(::Enumerable) && parameters.empty?
       @parameters = parameters
       super type,name,qualifiers
+    end
+    #
+    # parameters accessor
+    #
+    def parameters
+      @parameters || []
     end
     #
     # Makes a Method recognizable in the set of Class features.
@@ -38,7 +42,7 @@ module CIM
     # returns a string representation in MOF syntax format
     #
     def to_s
-      p = @parameters.join(", ") if @parameters
+      p = parameters.join(", ")
       "#{super}(#{p})"
     end
   end
