@@ -18,7 +18,7 @@ module CIM
   # and contain features (properties or methods).
   #
   class Class < CIM::NamedElement
-    attr_reader :alias_name, :superclass, :features
+    attr_reader :alias_name, :superclass
     #
     # Creates a new Class with name (String), qualifiers, alias, superclass and features
     #
@@ -40,10 +40,16 @@ module CIM
       super name, qualifiers
     end
     #
+    # Ensure features can be enumerated
+    #
+    def features
+      @features || []
+    end
+    #
     # Iterate over features flagged as keys
     #
     def each_key
-      @features.each do |f|
+      features.each do |f|
 	yield f if f.key?
       end
     end
@@ -51,13 +57,13 @@ module CIM
     # true if class has instances (instance provider)
     #
     def instance?
-      @features.size > 0
+      features.size > 0
     end
     #
     # true if class has methods (method provider)
     #
     def method?
-      @features.each do |f|
+      features.each do |f|
 	case f
 	when CIM::Method: return true
 	end
