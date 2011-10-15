@@ -71,6 +71,9 @@ module CIM
       @type = type.to_sym
       raise TypeError.new("#{type}") unless TYPES.include? @type
     end
+    def array?
+      false
+    end
     #
     # returns a string representation in MOF syntax format
     #
@@ -165,6 +168,9 @@ module CIM
     def initialize size, type
       @size = size
       super type
+    end
+    def array?
+      true
     end
     #
     # An array is equal to any other array, regardless of the enclosed type

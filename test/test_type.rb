@@ -8,6 +8,7 @@ class TypeTest < Test::Unit::TestCase
     t = CIM::Type.new :null
     assert t
     assert_equal "null", t.to_s
+    assert !t.array?
   end
   def test_raise
     assert_raise TypeError do
