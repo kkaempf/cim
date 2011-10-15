@@ -25,7 +25,7 @@ module CIM
     #   Association.new("AssocClass", qualifiers, "assoc_class", "SuperClass", features)
     #
     def initialize name, qualifiers = nil, alias_name = nil, superclass = nil, features = nil
-      raise "Association needs 'association' qualifier" unless qualifiers.include?(:association, :bool)
+      raise "Association needs 'association' qualifier" unless qualifiers.include?(:association, :boolean)
       super name, qualifiers, alias_name, superclass, features
     end
     #

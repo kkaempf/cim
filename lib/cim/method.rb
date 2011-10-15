@@ -18,9 +18,9 @@ module CIM
     # Create a Method with return type (Type) and name (String), optional Qualifiers and parameters (Property)
     #
     # call-seq:
-    #   Method.new(:bool, "do_something")
-    #   Method.new(:bool, "do_something", qualifiers)
-    #   Method.new(:bool, "do_something", qualifiers, parameters)
+    #   Method.new(:boolean, "do_something")
+    #   Method.new(:boolean, "do_something", qualifiers)
+    #   Method.new(:boolean, "do_something", qualifiers, parameters)
     #
     def initialize type, name, qualifiers = nil, parameters = nil
       @parameters = parameters

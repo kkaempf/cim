@@ -22,7 +22,7 @@ module CIM
     # if has key qualifier
     #
     def key?
-      @qualifiers && @qualifiers.include?(:key,:bool)
+      @qualifiers && @qualifiers.include?(:key,:boolean)
     end
     #
     # if static (class-level) feature

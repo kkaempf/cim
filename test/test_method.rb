@@ -15,10 +15,10 @@ class MethodTest < Test::Unit::TestCase
     assert_equal false, m.to_s.empty?
   end
   def test_nodesc
-    m = CIM::Method.new :bool, "Foo"
+    m = CIM::Method.new :boolean, "Foo"
     assert m
     assert_equal "Foo", m.name
-    assert_equal m.type, :bool
+    assert_equal m.type, :boolean
 #    assert_equal nil, m.description
   end
   def test_raise

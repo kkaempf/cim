@@ -15,6 +15,10 @@ class TypeTest < Test::Unit::TestCase
       t = CIM::Type.new :foo
     end
   end
+  def test_alias
+    assert_equal CIM::Type.new(:bool), CIM::Type.new(:boolean)
+    assert_equal CIM::Type.new(:datetime), CIM::Type.new(:dateTime)
+  end
   def test_normalize
     assert_equal CIM::Type.new(:null), CIM::Type.normalize(:null)
     assert_equal CIM::Type.normalize(:null), CIM::Type.normalize(CIM::Type.new(:null))

@@ -22,7 +22,7 @@ module CIM
   #
   # A QualifierDeclaration declares a qualifier by
   # name:: (String)
-  # type:: (Type) (defaults to bool)
+  # type:: (Type) (defaults to boolean)
   # default value:: (Variant) (defaults to false)
   # scopes:: (QualifierScopes) (where the qualifier can be used)
   # flavor:: (QualifierFlavors) (how the qualifier is applied)
@@ -34,7 +34,7 @@ module CIM
     #
     # Create a new QualifierDeclaration
     #
-    def initialize name, type = :bool, default = false, scopes = nil, flavors = nil
+    def initialize name, type = :boolean, default = false, scopes = nil, flavors = nil
       @type = (type.kind_of? Type) ? type : Type.new(type)
       @default = (default.nil? || default.is_a?(CIM::Variant)) ? default : CIM::Variant.new(@type, default)
       @scopes = scopes

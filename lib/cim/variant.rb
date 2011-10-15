@@ -32,8 +32,8 @@ module CIM
 #      $stderr.puts "<#{@type}>#{self} == #{v.class}"
       case v
       when NilClass:   @type == :null && @value.nil?
-      when FalseClass: @type == :bool && !@value
-      when TrueClass:  @type == :bool && @value
+      when FalseClass: @type == :boolean && !@value
+      when TrueClass:  @type == :boolean && @value
       when String:     @type == :string && @value == v
       when Integer:    @type == :int && @value == v
       when Float:      @type == :real && @value == v

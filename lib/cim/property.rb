@@ -19,9 +19,9 @@ module CIM
     # Create a Property with type (Type) and name (String), optional QualifierSet and default value
     #
     # call-seq:
-    #   Property.new(:bool, "flag")
-    #   Property.new(:bool, "flag", qualifier_set)
-    #   Property.new(:bool, "flag", qualifier_set, true)
+    #   Property.new(:boolean, "flag")
+    #   Property.new(:boolean, "flag", qualifier_set)
+    #   Property.new(:boolean, "flag", qualifier_set, true)
     #
     def initialize type, name, qualifier_set=nil, default=nil
       @default = default

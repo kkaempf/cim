@@ -23,13 +23,12 @@ module CIM
   # uint64::    Unsigned 64-bit integer
   # sint64::    Signed 64-bit integer
   # string::    UCS-2 string
-  # bool::      Boolean
+  # boolean::   Boolean
   # real32::    IEEE 4-byte floating-point
   # real64::    IEEE 8-byte floating-point
-  # datetime::  A string containing a date-time
+  # dateTime::  A string containing a date-time
   # reference:: Strongly typed reference
   # char16::    16-bit UCS-2 character
-  # datetime::  Timestamp
   # void::      -- allowed for WMI only
   #
   #
@@ -38,11 +37,15 @@ module CIM
       (type.is_a? self) ? type : self.new(type)
     end
     
-    TYPES = [:null,:void,:bool,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:datetime,:class,:reference,:array]
+    TYPES = [:null,:void,:boolean,:char16,:string,:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64,:real32,:real64,:dateTime,:class,:reference,:array]
+    NORMALIZE = {
+      :bool => :boolean,
+      :datetime => :dateTime
+    }
     MATCHES = {
       :null => [],
       :void => [], # WMI
-      :bool => [],
+      :boolean => [],
       :char16 => [ :null, :string ],
       :string => [ :null ],
       :uint8 => [ :null ],
@@ -55,7 +58,7 @@ module CIM
       :sint64 => [ :null, :sint8, :sint16, :sint32 ],
       :real32 => [ :null ],
       :real64 => [ :null, :real32 ],
-      :datetime => [ :null ],
+      :dateTime => [ :null ],
       :class => [ :null ],
       :reference => [ :null ],
       :array => [ :null ]
@@ -64,11 +67,12 @@ module CIM
     #
     # Basic types are created by-symbol or by-name
     #
-    # CIM::Type.new(:bool) == CIM::Type.new("bool")
+    # CIM::Type.new(:boolean) == CIM::Type.new("boolean")
     #
     def initialize type
       type.downcase! if type.is_a? String
       @type = type.to_sym
+      @type = NORMALIZE[@type] || @type
       raise TypeError.new("#{type}") unless TYPES.include? @type
     end
     def array?
@@ -105,7 +109,7 @@ module CIM
       when NilClass
 	true
       when FalseClass, TrueClass
-	type == :bool
+	type == :boolean
       when Integer
 	case type
 	when :uint8: (0..255) === value
