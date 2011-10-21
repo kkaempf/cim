@@ -30,6 +30,23 @@ module CIM
     #   Class.new("MyClass", qualifiers, "my_class")
     #   Class.new("MyClass", qualifiers, "my_class", "SuperClass")
     #   Class.new("MyClass", qualifiers, "my_class", "SuperClass", features)
+#    	    if qualifiers and qualifiers.include?(:association, :boolean)
+	      # FIXME: 'association' must be first
+              # Context:
+	      #
+	      # The remaining qualifier list must not include
+	      # the ASSOCIATION qualifier again. If the
+	      # association has no super association, then at
+	      # least two references must be specified! The
+	      # ASSOCIATION qualifier may be omitted in
+	      # sub associations.
+#	      result = CIM::Association.new(val[2],qualifiers,val[3],val[4],features)
+#	    elsif qualifiers and qualifiers.include?(:indication, :boolean)
+	      # FIXME: 'indication' must be first
+	      # FIXME: features must not include references
+#	      result = CIM::Indication.new(val[2],qualifiers,val[3],val[4],features)
+#	    else
+
     #
     def initialize name, qualifiers = nil, alias_name = nil, superclass = nil, features = nil
       @alias_name = alias_name
@@ -74,13 +91,13 @@ module CIM
     # true if class has associations (association provider)
     #
     def association?
-      false
+      qualifiers.include? :association
     end
     #
     # true if class has indications (indication provider)
     #
     def indication?
-      false
+      qualifiers.include? :indication
     end
     #
     # returns a string representation in MOF syntax format
