@@ -104,13 +104,25 @@ module CIM
     end
     private
     def matches_value type,value
-      #	puts ">#{type}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
+#      puts "matches_value >#{type}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
+      if value.class === Class
+	return case value.to_s
+	when "NilClass": type == :null
+	when "FalseClass", "TrueClass": type == :boolean
+	when "Integer", "Fixnum": [:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64].include? type
+	when "Float": [:real32, :real64].include? type
+	when "String": type == :string
+	when "Array": type.array?
+	else
+	  false
+	end
+      end
       case value
       when NilClass
 	true
       when FalseClass, TrueClass
 	type == :boolean
-      when Integer
+      when Integer, Fixnum
 	case type
 	when :uint8: (0..255) === value
 	when :sint8: (-128..127) === value
@@ -125,8 +137,7 @@ module CIM
 	end
       when Float
 	case type
-	when :real32: value.to_i.size == 4
-	when :real64: true
+	when :real32, :real64: true
 	else
 	  false
 	end

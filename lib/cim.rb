@@ -41,7 +41,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 #
 
 module CIM
-  VERSION = '1.0.0'
+  VERSION = '1.1.0'
   require 'cim/type'
   require 'cim/variant'
   require 'cim/qualifier_flavors'

@@ -23,4 +23,11 @@ class TypeTest < Test::Unit::TestCase
     assert_equal CIM::Type.new(:null), CIM::Type.normalize(:null)
     assert_equal CIM::Type.normalize(:null), CIM::Type.normalize(CIM::Type.new(:null))
   end
+  def test_matches
+    assert CIM::Type.new(:null).matches? nil
+    assert CIM::Type.new(:uint64).matches? 1
+    assert CIM::Type.new(:uint64).matches? Integer
+    assert CIM::Type.new(:real32).matches? 3.1415
+    assert CIM::Type.new(:string).matches? String
+  end
 end
