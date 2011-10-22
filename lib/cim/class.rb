@@ -74,16 +74,19 @@ module CIM
     # true if class has instances (instance provider)
     #
     def instance?
-      features.size > 0
+      features.each do |f|
+        next if f.reference?
+	next if f.method?
+	return true if f.property?
+      end
+      false
     end
     #
     # true if class has methods (method provider)
     #
     def method?
       features.each do |f|
-	case f
-	when CIM::Method: return true
-	end
+	return true if f.method?
       end
       false
     end
