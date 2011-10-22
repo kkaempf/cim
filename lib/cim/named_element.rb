@@ -35,7 +35,7 @@ module CIM
     # Check if a Qualifier is included 
     #
     def include? qualifier
-      @qualifiers.include? CIM::Qualifier.normalize(qualifier)
+      @qualifiers.include? qualifier
     end
     alias includes? include?
     #
