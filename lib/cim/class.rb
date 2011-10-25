@@ -56,6 +56,11 @@ module CIM
       #	puts "CIM::Class.new(#{@features})"
       super name, qualifiers
     end
+    
+    def method_missing name, *args
+      @qualifiers[name]
+    end
+
     #
     # Ensure features can be enumerated
     #
