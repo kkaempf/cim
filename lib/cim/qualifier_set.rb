@@ -56,9 +56,7 @@ module CIM
 			 q == qualifier.declaration
 		       when CIM::QualifierDeclaration
 			 q == qualifier
-		       when String
-			 q.declaration == qualifier
-		       when Symbol
+		       when String, Symbol
 			 q.declaration == qualifier
 		       else
 			 raise "Unknown parameter in #{self.class}[]"
