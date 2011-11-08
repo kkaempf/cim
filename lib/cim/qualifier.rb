@@ -77,8 +77,8 @@ module CIM
     def to_s
       s = "#{@declaration.name.capitalize}"
       case @value
-      when nil:
-      when Array:
+      when nil
+      when Array
 	s << " {#{@value.join(', ')}}"
       else
 	s << "(#{@value.inspect})"

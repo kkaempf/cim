@@ -21,8 +21,10 @@ module CIM
       super 0
       args.flatten.each do |q|
 	case q
-	when QualifierDeclaration: q = Qualifier.new q
-	when Qualifier:
+	when QualifierDeclaration
+	  q = Qualifier.new q
+	when Qualifier
+	  # nothing
 	else
 	  q = Qualifier.new(QualifierDeclaration.new q)
 	end

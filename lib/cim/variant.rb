@@ -31,13 +31,13 @@ module CIM
     def == v
 #      $stderr.puts "<#{@type}>#{self} == #{v.class}"
       case v
-      when NilClass:   @type == :null && @value.nil?
-      when FalseClass: @type == :boolean && !@value
-      when TrueClass:  @type == :boolean && @value
-      when String:     @type == :string && @value == v
-      when Integer:    @type == :int && @value == v
-      when Float:      @type == :real && @value == v
-      when CIM::Variant: @type == v.type && @value == v.value
+      when NilClass then     @type == :null && @value.nil?
+      when FalseClass then   @type == :boolean && !@value
+      when TrueClass then    @type == :boolean && @value
+      when String then       @type == :string && @value == v
+      when Integer then      @type == :int && @value == v
+      when Float then        @type == :real && @value == v
+      when CIM::Variant then @type == v.type && @value == v.value
       else
 	false
       end			

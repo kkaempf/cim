@@ -95,9 +95,9 @@ module CIM
     #
     def == t
       case t
-      when Type: t.type == @type
-      when Symbol: t == @type
-      when String: t.downcase == @type.to_s
+      when Type then t.type == @type
+      when Symbol then t == @type
+      when String then t.downcase == @type.to_s
       else
 	false
       end
@@ -107,15 +107,15 @@ module CIM
 #      puts "matches_value >#{type}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
       if value.class === Class
 	return case value.to_s
-	when "NilClass": type == :null
-	when "FalseClass", "TrueClass": type == :boolean
-	when "Integer", "Fixnum": [:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64].include? type
-	when "Float": [:real32, :real64].include? type
-	when "String": type == :string
-	when "Array": type.array?
-	else
-	  false
-	end
+          when "NilClass" then type == :null
+	  when "FalseClass", "TrueClass" then type == :boolean
+	  when "Integer", "Fixnum" then [:uint8,:sint8,:uint16,:sint16,:uint32,:sint32,:uint64,:sint64].include? type
+	  when "Float" then [:real32, :real64].include? type
+	  when "String" then type == :string
+	  when "Array" then type.array?
+	  else
+	    false
+	  end
       end
       case value
       when NilClass
@@ -124,20 +124,20 @@ module CIM
 	type == :boolean
       when Integer, Fixnum
 	case type
-	when :uint8: (0..255) === value
-	when :sint8: (-128..127) === value
-	when :uint16: (0..65535) === value
-	when :sint16: (-32768..32767) === value
-	when :uint32: (0..4294967295) === value
-	when :sint32: (-2147483648..2147483647) === value
-	when :uint64: (0..18446744073709551615) === value
-	when :sint64: (-9223372036854775808..9223372036854775807) === value
+	when :uint8 then (0..255) === value
+	when :sint8 then (-128..127) === value
+	when :uint16 then (0..65535) === value
+	when :sint16 then (-32768..32767) === value
+	when :uint32 then (0..4294967295) === value
+	when :sint32 then (-2147483648..2147483647) === value
+	when :uint64 then (0..18446744073709551615) === value
+	when :sint64 then (-9223372036854775808..9223372036854775807) === value
 	else
 	  false
 	end
       when Float
 	case type
-	when :real32, :real64: true
+	when :real32, :real64 then true
 	else
 	  false
 	end
