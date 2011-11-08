@@ -18,7 +18,7 @@ class QualifierSetTest < Test::Unit::TestCase
   end
   def test_prefill
     q = CIM::QualifierSet.new "a", :b
-    assert 2, q.size
+    assert_equal 2, q.size
     assert q.include?( "a" )
     assert q.include?( "b", :boolean )
   end
