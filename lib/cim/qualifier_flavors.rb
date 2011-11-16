@@ -32,9 +32,8 @@ module CIM
   # tosubclass:: The qualifier is inherited by any subclass (default: true)
   # translatable:: Marks a qualifier value for localization (default: false)
   #
-  class QualifierFlavors
+  class QualifierFlavors < ::Array
     FLAVORS = [:amended, :enableoverride, :disableoverride, :restricted, :toinstance, :tosubclass, :translatable]
-    attr_reader :flavors
     #
     # Create QualifierFlavors with an initial flavor. More flavors can be added through the << method.
     #
@@ -46,7 +45,6 @@ module CIM
     # The flavor can be named as a string or a symbol.
     #
     def initialize *flavors
-      @flavors = []
       flavors.flatten.each do |flavor|
 	self << flavor
       end
@@ -63,14 +61,8 @@ module CIM
     # Raises QualifierFlavorError if its not an allowed flavor
     #
     def << flavor
-      @flavors << normalize(flavor)
+      super(normalize flavor)
       self
-    end
-    #
-    # Number of flavors in the set
-    #
-    def size
-      @flavors.size
     end
     #
     # Check if a specific flavor is included in the set
@@ -83,14 +75,14 @@ module CIM
     # Raises QualifierFlavorError if its not an allowed flavor
     #
     def include? flavor
-      @flavors.include?(normalize flavor)
+      super(normalize flavor)
     end
     alias includes? include?
     #
     # returns a string representation in MOF syntax format
     #
     def to_s
-      "Flavor(#{@flavors.join(', ')})"
+      "Flavor(#{self.join(', ')})"
     end
     private
     #

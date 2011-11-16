@@ -9,7 +9,7 @@
 #
 module CIM
     
-  class QualifierScopesError < ArgumentError
+  class QualifierScopeError < ArgumentError
     #
     # Raised if wrong Scope passed
     #
@@ -22,9 +22,8 @@ module CIM
     end
   end
 
-  class QualifierScopes
+  class QualifierScopes < ::Array
     META_ELEMENTS = [ :schema, :class, :association, :indication, :qualifier, :property, :reference, :method, :parameter, :any ]
-    attr_reader :elements
     #
     # call-seq:
     #   QualifierScopes.new => qualifier_scopes
@@ -35,7 +34,6 @@ module CIM
     # raises QualifierScopesError
     #
     def initialize *elements
-      @elements = []
       elements.flatten.each do |element|
 	self << element
       end
@@ -49,7 +47,7 @@ module CIM
     # raises QualifierScopesError
     #
     def << element
-      @elements << (normalize element)
+      self.push(normalize element)
       self
     end
     #
@@ -61,26 +59,21 @@ module CIM
     # raises QualifierScopesError
     #
     def include? element
-      @elements.include?(normalize element)
+      super(normalize element)
     end
     alias includes? include?
-    #
-    # Number of scopes
-    #
-    def size
-      @elements.size
-    end
+
     #
     # returns a string representation in MOF syntax format
     #
     def to_s
-      "Scope(#{@elements.join(', ')})"
+      "Scope(#{self.join(', ')})"
     end
   private
     def normalize element
       element.downcase! if element.is_a?(String)
       e = element.to_sym
-      raise QualifierScopesError.new(element) unless META_ELEMENTS.include?(e)
+      raise QualifierScopeError.new(element) unless META_ELEMENTS.include?(e)
       e
     end
   end
