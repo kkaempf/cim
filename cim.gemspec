@@ -21,10 +21,7 @@ http://www.dmtf.org/education/mof for details}
   s.add_development_dependency('rake')
   s.add_development_dependency('bundler')
 
-  s.files         = `git ls-files`.split("\n")
-  s.files.reject! { |fn| fn == '.gitignore' }
+  s.files         = Dir.glob("lib/**/*.rb")
   s.extra_rdoc_files    = Dir['README*', 'TODO*', 'CHANGELOG*', 'LICENSE']
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 end
