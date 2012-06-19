@@ -56,21 +56,5 @@ module CIM
       end
       s
     end
-    #
-    # Check for qualifiers
-    #
-    #  # check for existance
-    #  property.qualifier? -> true or false
-    #
-    #  # check value
-    #  property.description -> String or nil
-    #
-    def method_missing name, *args
-      if name.to_s[-1,1] == "?"
-        @qualifiers && @qualifiers.include?(name.to_s[0...-1])
-      else
-        (@qualifiers[name].value || @qualifiers[name].declaration.default.value) rescue nil
-      end
-    end
   end
 end
