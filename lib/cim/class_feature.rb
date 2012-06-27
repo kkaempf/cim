@@ -19,18 +19,6 @@ module CIM
   class ClassFeature < NamedElement
     attr_reader :type
     #
-    # if has key qualifier
-    #
-    def key?
-      @qualifiers && @qualifiers.include?(:key,:boolean)
-    end
-    #
-    # if static (class-level) feature
-    #
-    def static?
-      false
-    end
-    #
     # if Property
     #
     def property?

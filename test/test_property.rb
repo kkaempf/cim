@@ -5,11 +5,14 @@ require "cim"
 
 class PropertyTest < Test::Unit::TestCase
   def test_init
-    p = CIM::Property.new :string, "String", CIM::QualifierDeclaration.new(:key, :boolean), CIM::QualifierDeclaration.new(:description, :string, "This is a string", :class)
+    p = CIM::Property.new :string, "String", [CIM::QualifierDeclaration.new(:key, :boolean), CIM::QualifierDeclaration.new(:description, :string, "This is a string", :class)], "Default property value"
     assert p
     assert p.is_a? CIM::Property
     assert_equal "String", p.name
-#    assert p.key?
+    assert_kind_of String, p.default
+    assert p.key?
+    assert p.description
+    assert_kind_of String, p.description
   end
   def test_name
     p = CIM::Property.new :uint32, "foo"
