@@ -10,6 +10,9 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
+CIMPATH = "/usr/share/mof/ruby"
+$:.unshift(CIMPATH) unless $:.include?(CIMPATH)
+
 #
 # The CIM Ruby gem is an implementation of the Common Information Model (CIM) meta schema[1]
 #
