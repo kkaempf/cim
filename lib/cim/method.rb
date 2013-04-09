@@ -58,7 +58,7 @@ module CIM
       if name.to_s[-1,1] == "?"
         @qualifiers && @qualifiers.include?(name.to_s[0...-1])
       else
-        (@qualifiers[name].value || @qualifiers[name].declaration.default.value) rescue nil
+        (@qualifiers[name].value || @qualifiers[name].declaration.default) rescue nil
       end
     end
   end
