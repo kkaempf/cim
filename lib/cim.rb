@@ -44,7 +44,7 @@ $:.unshift(CIMPATH) unless $:.include?(CIMPATH)
 #
 
 module CIM
-  VERSION = '1.4'
+  VERSION = '1.4.1'
   require 'cim/type'
   require 'cim/variant'
   require 'cim/qualifier_flavors'
