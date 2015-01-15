@@ -152,12 +152,16 @@ module CIM
     # check if another Type or Variant matches
     #
     def matches? x
-      #	puts ">#{self}<{#{self.class}}.matches?>#{x.inspect}<{#{x.class}}"
+#      	puts "Type#matches? : >#{self}<{#{self.class}}.matches?>#{x.inspect}<{#{x.class}}"
       case x
       when CIM::Type, CIM::Variant
 	return true if x.type == @type
 	return true if MATCHES[@type].include? x.type
 	false
+      when ::Symbol
+        return true if @type == x
+        return true if MATCHES[@type].include? x
+        false
       when ::Array
 	return false unless self.is_a? CIM::Array
 	x.each do |v|
