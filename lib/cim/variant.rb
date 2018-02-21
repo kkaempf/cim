@@ -30,17 +30,46 @@ module CIM
     #
     def == v
 #      $stderr.puts "<#{@type}>#{self} == #{v.class}"
+      return false unless self.is_a?(v)
       case v
-      when NilClass then     @type == :null && @value.nil?
-      when FalseClass then   @type == :boolean && !@value
-      when TrueClass then    @type == :boolean && @value
-      when String then       @type == :string && @value == v
-      when Integer then      @type == :int && @value == v
-      when Float then        @type == :real && @value == v
-      when CIM::Variant then @type == v.type && @value == v.value
+      when NilClass then     @value.nil?
+      when FalseClass then   !@value
+      when TrueClass then    @value
+      when String then       @value == v
+      when Integer then      @value == v
+      when Float then        @value == v
+      when CIM::Variant then @value == v.value
       else
 	false
       end			
+    end
+    #
+    # Check type against Ruby class
+    #
+    def is_a? klass
+#      puts "Variant#is_a? : #{self.inspect} is_a #{klass.class}:#{klass.inspect}"
+      case klass
+      when NilClass      then @type.matches? :null
+      when FalseClass    then @type.matches? :boolean
+      when TrueClass     then @type.matches? :boolean
+      when Integer       then @type.matches?(:uint64) || @type.matches?(:sint64) 
+      when Float         then @type.matches? :real32
+      when Symbol        then @type.matches? klass
+      when String        then
+        @type.matches? :string
+      when CIM::Variant  then @type.matches? klass.type
+      else
+        if klass == Integer
+          @type.matches?(:uint64) || @type.matches?(:sint64) 
+        elsif klass == Float
+          @type.matches? :real32
+        elsif klass == String
+          @type.matches? :string
+        else
+#          puts "Nothing matches #{klass}:#{klass.inspect}"
+          false
+        end
+      end
     end
     #
     # returns a string representation in MOF syntax format

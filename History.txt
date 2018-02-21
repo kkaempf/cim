@@ -1,3 +1,9 @@
+=== 1.4.2 2015-01-15
+
+* CIM::Variant.is_a?
+* Establish /usr/share/mof/ruby as include path for Ruby type
+  information
+
 === 1.4.1 2013-04-09
 
 * Fix value return on boolean qualifiers
