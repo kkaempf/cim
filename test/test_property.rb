@@ -12,7 +12,7 @@ class PropertyTest < Test::Unit::TestCase
     assert_kind_of String, p.default
     assert p.key?
     assert p.description
-    assert_kind_of String, p.description
+    assert_kind_of CIM::Variant, p.description
   end
   def test_name
     p = CIM::Property.new :uint32, "foo"
