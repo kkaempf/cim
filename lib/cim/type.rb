@@ -104,7 +104,7 @@ module CIM
     end
     private
     def matches_value type,value
-#      puts "matches_value >#{type}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
+#      puts "matches_value >#{type.inspect}<{#{type.class}}.matches_value?>#{value.inspect}<{#{value.class}}"
       if value.class === Class
 	return case value.to_s
           when "NilClass" then type == :null
@@ -122,7 +122,7 @@ module CIM
 	true
       when FalseClass, TrueClass
 	type == :boolean
-      when Integer, Fixnum
+      when Integer
 	case type
 	when :uint8 then (0..255) === value
 	when :sint8 then (-128..127) === value
